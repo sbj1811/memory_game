@@ -72,7 +72,7 @@ function flipCard(){
 function checkMatched(){
 	matched += 1;
 	if (matched === 8){
-		modal.css("display", "block");
+		$('.modal').css("display", "block");
 	}
 }
 
@@ -87,6 +87,10 @@ function restartGame(){
 	main();
 }
 
+function playAgain(){
+	restartGame();
+	$('.modal').css("display", "none");
+}
 //Matches the open cards
 function matchCard(){
 	if(trackOpenCard[0][0].firstChild.className == trackOpenCard[1][0].firstChild.className){
@@ -109,6 +113,7 @@ function main(){
 	genDeck();
 	$('.card').click(flipCard);
 	$('.restart').click(restartGame);
+	$(".play-again").click(playAgain);
 }
 
 //Call to main subroutine
