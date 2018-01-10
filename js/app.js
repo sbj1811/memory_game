@@ -1,8 +1,12 @@
 //List of cards
 var listOfCards = ["fa-envelope","fa-coffee","fa-camera-retro","fa-cubes","fa-bus","fa-beer","fa-balance-scale","fa-bicycle"];
+//Number of moves played
 var moves = 0;
+//Open card list
 var trackOpenCard = [];
+//Number of matches done
 var matched = 0;
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -31,16 +35,19 @@ function genDeck(){
 	}
 }
 
+// Opens clicked card
 function cardOpen(card){
 	card.toggleClass("open show");
 	trackOpenCard.push(card);
 }
 
+// Changes star from filled to outline
 function flipStar(){
 	$('.stars').children()[0].remove();
 	$('.stars').append('<li><i class="fa fa-star-o"></i></li>');
 }
 
+// Tracks number of moves
 function moveCapture(){
 	moves += 1;
 	$('.moves').html(moves + " Moves");
@@ -49,6 +56,7 @@ function moveCapture(){
 	}
 }
 
+//Opens card when clicked
 function flipCard(){
 	if (trackOpenCard.length == 0){
 		cardOpen($(this));
@@ -60,6 +68,7 @@ function flipCard(){
 	}
 }
 
+//Tracks number of matched cards
 function checkMatched(){
 	matched += 1;
 	if (matched === 8){
@@ -67,6 +76,7 @@ function checkMatched(){
 	}
 }
 
+//Restarts the game,resets the deck and numbers of moves.
 function restartGame(){
 	trackOpenCard = [];
 	moves = 0;
@@ -77,6 +87,7 @@ function restartGame(){
 	main();
 }
 
+//Matches the open cards
 function matchCard(){
 	if(trackOpenCard[0][0].firstChild.className == trackOpenCard[1][0].firstChild.className){
 		trackOpenCard.forEach(function (card) {
@@ -93,10 +104,12 @@ function matchCard(){
 	}
 }
 
+//Main game subroutine
 function main(){
 	genDeck();
 	$('.card').click(flipCard);
 	$('.restart').click(restartGame);
 }
 
+//Call to main subroutine
 main();
