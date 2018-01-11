@@ -12,8 +12,10 @@ var seconds = 0;
 var minutes = 0;
 //Count hours
 var hours = 0;
-
+//Timer start
 var start = 0;
+//Timer stop
+var stop = 0;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -83,6 +85,7 @@ function checkMatched(){
 	if (matched === 8){
 		$('.modal').css("display", "block");
 		$('.stars').clone().appendTo('.rating');
+		stop = true;
 	}
 }
 
@@ -99,15 +102,21 @@ function formateTime(tm){
 //Timer
 function timerStart(){
     start = setInterval(function (){
-		if(seconds == 59){
-			minutes++;
-			seconds = 0;
+		if(stop !== true){
+			if(seconds == 59){
+				minutes++;
+				seconds = 0;
+			} else {
+				seconds++;
+			}
+			if(minutes == 59){
+				hours++;
+				minutes = 0;
+			}
 		} else {
-			seconds++;
-		}
-		if(minutes == 59){
-			hours++;
-			minutes = 0;
+			seconds = seconds;
+			minutes = minutes;
+			hours = hours;
 		}
 		var time = formateTime(hours) +":"+ formateTime(minutes) +":"+ formateTime(seconds);
 		$(".timer").text(time);
