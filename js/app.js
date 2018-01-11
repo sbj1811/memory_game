@@ -1,5 +1,6 @@
 //List of cards
-var listOfCards = ["fa-envelope","fa-coffee","fa-camera-retro","fa-cubes","fa-bus","fa-beer","fa-balance-scale","fa-bicycle"];
+//var listOfCards = ["fa-envelope","fa-coffee","fa-camera-retro","fa-cubes","fa-bus","fa-beer","fa-balance-scale","fa-bicycle"];
+var listOfCards = ["drogo","snow","dany","arya","jamie","cercie","tyrion","sansa"]
 //Number of moves played
 var moves = 0;
 //Open card list
@@ -16,6 +17,7 @@ var hours = 0;
 var start = 0;
 //Timer stop
 var stop = 0;
+var seen = false;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -33,23 +35,31 @@ function shuffle(array) {
 }
 
 // Create Card element
-function genCard(card){
-	$('.deck').append('<li class="card" id="card"><i class="fa ' + card + '"></i></li>');
+function genCard(card,id){
+	$('.deck').append('<li class="card" id="'+card+'_'+id+'"><img class="'+card+'"></li>');
 }
 
 // Create a Deck of Cards
 function genDeck(){
 	for (var i = 0; i < 2; i++) {
 		listOfCards = shuffle(listOfCards);
-		listOfCards.forEach(genCard);
+		var id = i+1;
+		listOfCards.forEach(function (card,id){
+			$('.deck').append('<li class="card" id="'+card+'_'+id+'"><img class="'+card+'"></li>');
+		});
 	}
 	timerReset();
 }
 
 // Opens clicked card
 function cardOpen(card){
+	var cardId;
+	var imgId;
 	if(!card.hasClass("open show")) {
 		card.addClass("open show");
+		cardId = $(card).attr('id');
+		imgId = cardId.slice(0, -2);
+		$('#'+cardId).children()[0].setAttribute("src","img/"+imgId+".png")
 		trackOpenCard.push(card);
 	}
 }
@@ -157,6 +167,8 @@ function playAgain(){
 }
 //Matches the open cards
 function matchCard(){
+	var matchID;
+	var matchImgId;
 	if(trackOpenCard[0].children()[0].className === trackOpenCard[1].children().attr("class")){
 		trackOpenCard.forEach(function (card) {
         	card.addClass('match');
@@ -166,7 +178,10 @@ function matchCard(){
 	} else {
 		console.log("not a match");
 		trackOpenCard.forEach(function (card) {
-        	card.toggleClass("open show");
+        	matchID = $(card).attr('id');
+        	matchImgId = matchID.slice(0, -2);
+			$('#'+matchID).children()[0].removeAttribute("src","img/"+matchImgId+".png");
+			card.toggleClass("open show");
    		});
 		trackOpenCard = [];
 	}
