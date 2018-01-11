@@ -162,6 +162,13 @@ h1 {
     to {top: 0; opacity: 1}
 }
 
+.close {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    z-index: 9001;
+}
+
 
 .play-again {
     background: #2e3d49;

@@ -147,9 +147,13 @@ function restartGame(){
 	main();
 }
 
+function removeModal(){
+	$('.modal').css("display", "none");
+}
+
 function playAgain(){
 	restartGame();
-	$('.modal').css("display", "none");
+	removeModal();
 }
 //Matches the open cards
 function matchCard(){
@@ -174,6 +178,7 @@ function main(){
 	$('.card').click(flipCard);
 	$('.restart').click(restartGame);
 	$(".play-again").click(playAgain);
+	$(".close").click(removeModal);
 }
 
 //Call to main subroutine
