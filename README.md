@@ -1,8 +1,9 @@
-# README
+# Game of Thrones Matching Card
+### README
 #### Version: 1.0
 #### Author: Shaunak Jani
 
-# How The Game Works
+### How The Game Works
 The game board consists of sixteen "cards" arranged in a grid. The deck is made up of eight different pairs of cards, each with different symbols on one side. The cards are arranged randomly on the grid with the symbol face down. The gameplay rules are very simple: flip over two hidden cards at a time to locate the ones that match!
 
 #### Each turn:
@@ -13,6 +14,6 @@ The game board consists of sixteen "cards" arranged in a grid. The deck is made 
 * If the cards do not match, both cards are flipped face down.
 * The game ends once all cards have been correctly matched.
 
-#How to Plat the game:
+### How to Plat the game:
 * Download the repo.
 * Open index.html

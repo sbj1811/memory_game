@@ -17,6 +17,12 @@ var hours = 0;
 var start = 0;
 //Timer stop
 var stop = 0;
+//leaderboard object
+var leaderBoardObj = {
+  name: "",
+  moves: 0,
+  rating:""
+  }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -43,7 +49,7 @@ function genDeck(){
 	for (var i = 0; i < 2; i++) {
 		listOfCards = shuffle(listOfCards);
 		var id = i+1;
-		listOfCards.forEach(function (card,id){
+		listOfCards.forEach(function (card){
 			$('.deck').append('<li class="card" id="'+card+'_'+id+'"><img class="'+card+'"></li>');
 		});
 	}
@@ -57,7 +63,8 @@ function cardOpen(card){
 	if(!card.hasClass("open show")) {
 		cardId = $(card).attr('id');
 		imgId = cardId.slice(0, -2);
-		$('#'+cardId).children()[0].setAttribute("src","img/"+imgId+".png")
+		$('#'+cardId).children()[0].setAttribute("src","img/"+imgId+".png");
+		$('#'+cardId).children()[0].setAttribute("class",cardId+" flip");
 		card.addClass("open show");
 		trackOpenCard.push(card);
 	}
@@ -85,7 +92,7 @@ function flipCard(){
 	} 
 	else if (trackOpenCard.length == 1) {
 		cardOpen($(this));
-		matchCard();
+		setTimeout(matchCard,1300);
 		moveCapture();
 	}
 }
@@ -169,21 +176,29 @@ function playAgain(){
 	removeModal();
 }
 
+function classSwap(card,matchID,matchImgId){
+	matchID = $(card).attr('id');
+    matchImgId = matchID.slice(0, -2);
+	$('#'+matchID).children()[0].removeAttribute("class");
+	$('#'+matchID).children()[0].setAttribute("class",matchID);
+	return matchID;
+}
+
 //Matches the open cards
 function matchCard(){
-	var matchID;
-	var matchImgId;
-	if(trackOpenCard[0].children()[0].className === trackOpenCard[1].children().attr("class")){
+	var matchID,matchImgId;
+	var open_1 = trackOpenCard[0].children()[0].className.slice(0,-7);
+	var open_2 = trackOpenCard[1].children()[0].className.slice(0,-7);
+	if(open_1 === open_2){
 		trackOpenCard.forEach(function (card) {
-        	card.addClass('match');
+			classSwap(card,matchID,matchImgId);
+			card.addClass('match');
    		});
 		trackOpenCard = [];
 		checkMatched();
 	} else {
-		console.log("not a match");
 		trackOpenCard.forEach(function (card) {
-        	matchID = $(card).attr('id');
-        	matchImgId = matchID.slice(0, -2);
+        	matchID = classSwap(card,matchID,matchImgId);
 			$('#'+matchID).children()[0].removeAttribute("src","img/"+matchImgId+".png");
 			card.toggleClass("open show");
    		});
