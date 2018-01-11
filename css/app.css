@@ -41,6 +41,10 @@ h1 {
     font-weight: 300;
 }
 
+.got {
+    font-family: 'Game of Thrones';
+}
+
 /*
  * Styles for the deck of cards
  */
@@ -77,10 +81,7 @@ h1 {
 }
 
 .deck .card.open {
-    transform: rotateY(180deg);
-    transition: 0.6s;
-    transform-style: preserve-3d;
-    background: #02b3e4;
+    background: #000000;
     cursor: default;
 }
 
@@ -88,12 +89,17 @@ h1 {
     font-size: 33px;
 }
 
+.flip {
+    transform: rotateY(180deg);
+    transition: 0.1s;
+}
+
 .deck .card.match {
     cursor: default;
     transform: rotateY(180deg);
     transition: 0.6s;
     transform-style: preserve-3d;
-    background: #02ccba;
+    background: #000000;
     font-size: 33px;
 }
 
@@ -155,7 +161,7 @@ h1 {
 }
 
 .modal-content {
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    background: #ffffff url('../img/content_background.png');
     margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
@@ -188,6 +194,7 @@ h1 {
     top: -12px;
     right: -12px;
     z-index: 9001;
+    color: #ffffff;
 }
 
 

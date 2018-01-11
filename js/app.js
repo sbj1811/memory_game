@@ -55,10 +55,10 @@ function cardOpen(card){
 	var cardId;
 	var imgId;
 	if(!card.hasClass("open show")) {
-		card.addClass("open show");
 		cardId = $(card).attr('id');
 		imgId = cardId.slice(0, -2);
 		$('#'+cardId).children()[0].setAttribute("src","img/"+imgId+".png")
+		card.addClass("open show");
 		trackOpenCard.push(card);
 	}
 }
