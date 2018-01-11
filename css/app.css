@@ -108,6 +108,22 @@ h1 {
     cursor: pointer;
 }
 
+.rating .stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+.rating .stars li {
+    list-style: none;
+    display: inline-block;
+}
+
+.timer {
+    padding: 30px;
+}
+
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */

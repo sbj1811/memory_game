@@ -6,6 +6,14 @@ var moves = 0;
 var trackOpenCard = [];
 //Number of matches done
 var matched = 0;
+//Count seconds
+var seconds = 0;
+//Count minutes
+var minutes = 0;
+//Count hours
+var hours = 0;
+
+var start = 0;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -33,6 +41,7 @@ function genDeck(){
 		listOfCards = shuffle(listOfCards);
 		listOfCards.forEach(genCard);
 	}
+	timerReset();
 }
 
 // Opens clicked card
@@ -50,7 +59,7 @@ function flipStar(){
 // Tracks number of moves
 function moveCapture(){
 	moves += 1;
-	$('.moves').html(moves + " Moves");
+	$('.moves').html(" "+ moves + " Moves");
 	if (moves === 10 || moves === 20){
 		flipStar();
 	}
@@ -73,7 +82,45 @@ function checkMatched(){
 	matched += 1;
 	if (matched === 8){
 		$('.modal').css("display", "block");
+		$('.stars').clone().appendTo('.rating');
 	}
+}
+
+function formateTime(tm){
+	var extendZero = "0";
+	if (tm < 10){
+		extendZero = extendZero + tm.toString();
+	} else {
+		extendZero = tm.toString();
+	}
+	return extendZero;
+}
+
+//Timer
+function timerStart(){
+    start = setInterval(function (){
+		if(seconds == 59){
+			minutes++;
+			seconds = 0;
+		} else {
+			seconds++;
+		}
+		if(minutes == 59){
+			hours++;
+			minutes = 0;
+		}
+		var time = formateTime(hours) +":"+ formateTime(minutes) +":"+ formateTime(seconds);
+		$(".timer").text(time);
+	},1000);
+}
+
+function timerReset() {
+	clearInterval(start);
+	seconds = 0;
+	minutes = 0;
+	hours = 0;
+	$(".timer").text("00:00:00");
+	timerStart();
 }
 
 //Restarts the game,resets the deck and numbers of moves.
@@ -81,9 +128,10 @@ function restartGame(){
 	trackOpenCard = [];
 	moves = 0;
 	matched = 0;
-	$('.moves').html("");
+	$('.moves').html("0 Moves");
 	$('.deck').children("li").remove();
 	$(".fa-star-o").attr("class", "fa fa-star");
+	timerReset();
 	main();
 }
 
