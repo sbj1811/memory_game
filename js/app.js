@@ -34,7 +34,7 @@ function shuffle(array) {
 
 // Create Card element
 function genCard(card){
-	$('.deck').append('<li class="card"><i class="fa ' + card + '"></i></li>');
+	$('.deck').append('<li class="card" id="card"><i class="fa ' + card + '"></i></li>');
 }
 
 // Create a Deck of Cards
@@ -48,8 +48,10 @@ function genDeck(){
 
 // Opens clicked card
 function cardOpen(card){
-	card.toggleClass("open show");
-	trackOpenCard.push(card);
+	if(!card.hasClass("open show")) {
+		card.addClass("open show");
+		trackOpenCard.push(card);
+	}
 }
 
 // Changes star from filled to outline
@@ -101,6 +103,7 @@ function formateTime(tm){
 
 //Timer
 function timerStart(){
+	console.log("timerStart");
     start = setInterval(function (){
 		if(stop !== true){
 			if(seconds == 59){
@@ -128,6 +131,7 @@ function timerReset() {
 	seconds = 0;
 	minutes = 0;
 	hours = 0;
+	stop = false;
 	$(".timer").text("00:00:00");
 	timerStart();
 }
@@ -140,7 +144,6 @@ function restartGame(){
 	$('.moves').html("0 Moves");
 	$('.deck').children("li").remove();
 	$(".fa-star-o").attr("class", "fa fa-star");
-	timerReset();
 	main();
 }
 
@@ -150,7 +153,7 @@ function playAgain(){
 }
 //Matches the open cards
 function matchCard(){
-	if(trackOpenCard[0][0].firstChild.className == trackOpenCard[1][0].firstChild.className){
+	if(trackOpenCard[0].children()[0].className === trackOpenCard[1].children().attr("class")){
 		trackOpenCard.forEach(function (card) {
         	card.addClass('match');
    		});
