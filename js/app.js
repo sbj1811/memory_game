@@ -17,7 +17,6 @@ var hours = 0;
 var start = 0;
 //Timer stop
 var stop = 0;
-var seen = false;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -101,6 +100,7 @@ function checkMatched(){
 	}
 }
 
+//Adds 0 if time is single digit
 function formateTime(tm){
 	var extendZero = "0";
 	if (tm < 10){
@@ -111,7 +111,7 @@ function formateTime(tm){
 	return extendZero;
 }
 
-//Timer
+//Start timer
 function timerStart(){
 	console.log("timerStart");
     start = setInterval(function (){
@@ -136,6 +136,7 @@ function timerStart(){
 	},1000);
 }
 
+//Reset timer
 function timerReset() {
 	clearInterval(start);
 	seconds = 0;
@@ -157,14 +158,17 @@ function restartGame(){
 	main();
 }
 
+//Closes modal window
 function removeModal(){
 	$('.modal').css("display", "none");
 }
 
+//Play the game again
 function playAgain(){
 	restartGame();
 	removeModal();
 }
+
 //Matches the open cards
 function matchCard(){
 	var matchID;
