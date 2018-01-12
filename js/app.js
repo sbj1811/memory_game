@@ -24,7 +24,10 @@ var leaderBoardObj = {
   rating:""
   }
 
-// Shuffle function from http://stackoverflow.com/a/2450976
+/**
+* @description Shuffle function from http://stackoverflow.com/a/2450976
+* @param {array} array - list of cards
+*/
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -39,12 +42,18 @@ function shuffle(array) {
     return array;
 }
 
-// Create Card element
+/**
+* @description Create Card element
+* @param {Object} card - card to be generated
+* @param {number} id - id of the card
+*/
 function genCard(card,id){
 	$('.deck').append('<li class="card" id="'+card+'_'+id+'"><img class="'+card+'"</li>');
 }
 
-// Create a Deck of Cards
+/**
+* @descriptionCreate a Deck of Cards
+*/
 function genDeck(){
 	for (var i = 0; i < 2; i++) {
 		listOfCards = shuffle(listOfCards);
@@ -56,7 +65,10 @@ function genDeck(){
 	timerReset();
 }
 
-// Opens clicked card
+/**
+* @description Opens clicked card
+* @param {Object} card - clicked card
+*/
 function cardOpen(card){
 	var cardId;
 	var imgId;
@@ -70,13 +82,17 @@ function cardOpen(card){
 	}
 }
 
-// Changes star from filled to outline
+/**
+* @description Changes star from filled to outline
+*/
 function flipStar(){
 	$('.stars').children()[0].remove();
 	$('.stars').append('<li><i class="fa fa-star-o"></i></li>');
 }
 
-// Tracks number of moves
+/**
+* @description Tracks number of moves
+*/
 function moveCapture(){
 	moves += 1;
 	$('.moves').html(" "+ moves + " Moves");
@@ -85,7 +101,9 @@ function moveCapture(){
 	}
 }
 
-//Opens card when clicked
+/**
+* @description Opens card when clicked
+*/
 function flipCard(){
 	if (trackOpenCard.length == 0){
 		cardOpen($(this));
@@ -102,7 +120,9 @@ function flipCard(){
 	}
 }
 
-//Tracks number of matched cards
+/**
+* @description Tracks number of matched cards
+*/
 function checkMatched(){
 	matched += 1;
 	if (matched === 8){
@@ -113,7 +133,11 @@ function checkMatched(){
 	}
 }
 
-//Adds 0 if time is single digit
+/**
+* @description Adds 0 if time is single digit
+* @param {number} tm - timer digit
+* @returns {number} single digit preceded by zero
+*/
 function formateTime(tm){
 	var extendZero = "0";
 	if (tm < 10){
@@ -125,7 +149,9 @@ function formateTime(tm){
 }
 
 
-//Time Incrementer
+/**
+* @description Time Incrementer
+*/
 function timeIncr() {
 	if(stop !== true){
 		if(seconds == 59){
@@ -145,7 +171,9 @@ function timeIncr() {
 	}
 }
 
-//Start timer
+/**
+* @description Start timer
+*/
 function timerStart(){
 	console.log("timerStart");
     start = setInterval(function (){
@@ -155,7 +183,9 @@ function timerStart(){
 	},1000);
 }
 
-//Reset timer
+/**
+* @description Reset timer
+*/
 function timerReset() {
 	clearInterval(start);
 	timerStarted = false;
@@ -166,7 +196,9 @@ function timerReset() {
 	$(".timer").text("00:00:00");
 }
 
-//Restarts the game,resets the deck and numbers of moves.
+/**
+* @description Restarts the game,resets the deck and numbers of moves
+*/
 function restartGame(){
 	trackOpenCard = [];
 	moves = 0;
@@ -177,18 +209,28 @@ function restartGame(){
 	main();
 }
 
-//Closes modal window
+/**
+* @description Closes modal window
+*/
 function removeModal(){
 	$('.modal').css("display", "none");
 }
 
-//Play the game again
+/**
+* @description Play the game again
+*/
 function playAgain(){
 	restartGame();
 	removeModal();
 }
 
-//Swap classes for img tag
+/**
+* @description Swap classes for img tag
+* @param {Object} card - Clecked card
+* @param {string} matchID - card class
+* @param {string} matchImgId - img class
+* @returns {string} matchID - updated card class
+*/
 function classSwap(card,matchID,matchImgId){
 	matchID = $(card).attr('id');
     matchImgId = matchID.slice(0, -2);
@@ -197,18 +239,25 @@ function classSwap(card,matchID,matchImgId){
 	return matchID;
 }
 
-//Enable and disbale click
+/**
+* @description Disbale click
+*/
 function clickDisable(){
 	trackOpenCard.forEach(function (card) {
     	card.off('click');
     });
 } 
 
+/**
+* @description Enable click
+*/
 function clickEnable() {
     trackOpenCard[0].click(flipCard);
 }
 
-//Matches the open cards
+/**
+* @description Matches the open cards
+*/
 function matchCard(){
 	var matchID,matchImgId;
 	var open_1 = trackOpenCard[0].children()[0].className.slice(0,-7);
@@ -232,7 +281,9 @@ function matchCard(){
 	}
 }
 
-//Main game subroutine
+/**
+* @description Main game subroutine
+*/
 function main(){
 	genDeck();
 	$('.card').click(flipCard);
@@ -241,5 +292,7 @@ function main(){
 	$(".close").click(removeModal);
 }
 
-//Call to main subroutine
+/**
+* @description Call to main subroutine
+*/
 main();
