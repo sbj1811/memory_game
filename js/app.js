@@ -106,9 +106,10 @@ function flipCard(){
 function checkMatched(){
 	matched += 1;
 	if (matched === 8){
-		$('.modal').css("display", "block");
-		$('.stars').clone().appendTo('.rating');
 		stop = true;
+		$('.modal').css("display", "block");
+		$('.rating').children('ul').remove();
+		$('.stars').clone().appendTo('.rating');
 	}
 }
 
