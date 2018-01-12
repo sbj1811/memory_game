@@ -118,26 +118,32 @@ function formateTime(tm){
 	return extendZero;
 }
 
+
+//Time Incrementer
+function timeIncr() {
+	if(stop !== true){
+		if(seconds == 59){
+			minutes++;
+			seconds = 0;
+		} else {
+			seconds++;
+		}
+		if(minutes == 59){
+			hours++;
+			minutes = 0;
+		}
+	} else {
+		seconds = seconds;
+		minutes = minutes;
+		hours = hours;
+	}
+}
+
 //Start timer
 function timerStart(){
 	console.log("timerStart");
     start = setInterval(function (){
-		if(stop !== true){
-			if(seconds == 59){
-				minutes++;
-				seconds = 0;
-			} else {
-				seconds++;
-			}
-			if(minutes == 59){
-				hours++;
-				minutes = 0;
-			}
-		} else {
-			seconds = seconds;
-			minutes = minutes;
-			hours = hours;
-		}
+		timeIncr();
 		var time = formateTime(hours) +":"+ formateTime(minutes) +":"+ formateTime(seconds);
 		$(".timer").text(time);
 	},1000);
