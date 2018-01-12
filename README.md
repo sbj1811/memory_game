@@ -14,6 +14,7 @@ The game board consists of sixteen "cards" arranged in a grid. The deck is made 
 * If the cards do not match, both cards are flipped face down.
 * The game ends once all cards have been correctly matched.
 
-### How to Plat the game:
-* Download the repo.
+### How to Play the game:
+* Download the repository zip file
 * Open index.html
+* Game starts instantly
