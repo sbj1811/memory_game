@@ -1,4 +1,4 @@
-# Game of Thrones Matching Card
+# Game of Thrones Matching Card Game
 ### README
 #### Version: 1.0
 #### Author: Shaunak Jani
