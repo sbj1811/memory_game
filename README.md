@@ -17,4 +17,4 @@ The game board consists of sixteen "cards" arranged in a grid. The deck is made 
 ### How to Play the game:
 * Download the repository zip file
 * Open index.html
-* Game starts instantly
+* Game starts when first card is opened. 
