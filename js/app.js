@@ -6,6 +6,7 @@ var moves = 0;
 var trackOpenCard = [];
 //Number of matches done
 var matched = 0;
+var timerStarted = false;
 //Count seconds
 var seconds = 0;
 //Count minutes
@@ -88,6 +89,11 @@ function moveCapture(){
 function flipCard(){
 	if (trackOpenCard.length == 0){
 		cardOpen($(this));
+		if (timerStarted == false){
+			timerStart();
+			timerStarted=true;
+		}
+		clickDisable();
 	} 
 	else if (trackOpenCard.length == 1) {
 		cardOpen($(this));
@@ -151,12 +157,12 @@ function timerStart(){
 //Reset timer
 function timerReset() {
 	clearInterval(start);
+	timerStarted = false;
 	seconds = 0;
 	minutes = 0;
 	hours = 0;
 	stop = false;
 	$(".timer").text("00:00:00");
-	timerStart();
 }
 
 //Restarts the game,resets the deck and numbers of moves.
@@ -190,6 +196,17 @@ function classSwap(card,matchID,matchImgId){
 	return matchID;
 }
 
+//Enable and disbale click
+function clickDisable(){
+	trackOpenCard.forEach(function (card) {
+    	card.off('click');
+    });
+} 
+
+function clickEnable() {
+    trackOpenCard[0].click(flipCard);
+}
+
 //Matches the open cards
 function matchCard(){
 	var matchID,matchImgId;
@@ -200,6 +217,7 @@ function matchCard(){
 			classSwap(card,matchID,matchImgId);
 			card.addClass('match');
    		});
+   		clickDisable();
 		trackOpenCard = [];
 		checkMatched();
 	} else {
@@ -208,6 +226,7 @@ function matchCard(){
 			$('#'+matchID).children()[0].removeAttribute("src","img/"+matchImgId+".png");
 			card.toggleClass("open show");
    		});
+   		clickEnable();
 		trackOpenCard = [];
 	}
 }
