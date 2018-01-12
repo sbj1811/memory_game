@@ -1,5 +1,4 @@
 //List of cards
-//var listOfCards = ["fa-envelope","fa-coffee","fa-camera-retro","fa-cubes","fa-bus","fa-beer","fa-balance-scale","fa-bicycle"];
 var listOfCards = ["drogo","snow","dany","arya","jamie","cercie","tyrion","sansa"]
 //Number of moves played
 var moves = 0;
@@ -17,7 +16,7 @@ var hours = 0;
 var start = 0;
 //Timer stop
 var stop = 0;
-//leaderboard object
+//TODO: leaderboard object
 var leaderBoardObj = {
   name: "",
   moves: 0,
@@ -41,7 +40,7 @@ function shuffle(array) {
 
 // Create Card element
 function genCard(card,id){
-	$('.deck').append('<li class="card" id="'+card+'_'+id+'"><img class="'+card+'"></li>');
+	$('.deck').append('<li class="card" id="'+card+'_'+id+'"><img class="'+card+'"</li>');
 }
 
 // Create a Deck of Cards
@@ -80,7 +79,7 @@ function flipStar(){
 function moveCapture(){
 	moves += 1;
 	$('.moves').html(" "+ moves + " Moves");
-	if (moves === 10 || moves === 20){
+	if (moves === 15 || moves === 25){
 		flipStar();
 	}
 }
@@ -182,6 +181,7 @@ function playAgain(){
 	removeModal();
 }
 
+//Swap classes for img tag
 function classSwap(card,matchID,matchImgId){
 	matchID = $(card).attr('id');
     matchImgId = matchID.slice(0, -2);

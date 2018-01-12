@@ -7,8 +7,9 @@
   		<meta name="keywords" content="HTML,CSS">
   		<meta name="author" content="Shaunak Jani">
 	  	<meta name="viewport" content="width = device-width, initial-scale = 1">
-	  	<!-- Using Bootstrap 4.0.0-beta2 framework for CSS3 styles -->
-		<link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	  	<!-- Font Awesome -->
+	  	<link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	  	<!-- Bootstrap 4.0.0-beta3 framework for CSS3 styles -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     	<link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -43,22 +44,22 @@
 	        </ul>
 	    </div> <!-- End "container" -->
 		
-		/
+		<!-- TODO: leaderboard -->
 		<div class="modal" id="leaderboard">
 		   <div class="modal-content">
 		   </div>
-		</div> <!-- End "modal" -->
+		</div> <!-- End "leaderboard" -->
 
 		<div class="modal" id="result">
 		   <div class="modal-content">
-		   		<button type="button" class="close" data-dismiss="modal">&times;</button>
-			    <p><h3 class="got">Congratulations</h3><h3> You Won!</h3></p>
+		   		<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times-circle"></i></button>
+			    <p><h3 class="got">Valar Morghulis</h3><h3> You Won!</h3></p>
 				<p>Moves: <span class="moves"></span></p>
 				<p>Rating: <span class="rating"></span></p>
 				<p>Timer:<span class="timer"> 0:00</span></p></p>
-				<button class="btn btn-info play-again">Play Again!</button>
+				<button class="btn play-again">Play Again</button>
 		   </div>
-		</div> <!-- End "modal" -->
+		</div> <!-- End "result" -->
 
 	  	<!-- Bootstrap 4.0.0-beta2 JS, Popper.js, and jQuery -->
 	  	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
