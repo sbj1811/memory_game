@@ -35,15 +35,12 @@ header {
     padding: 2em;
     justify-content: center;
     text-align: center;
-    align-items: center;
     color: #ffffff;
     font-size: 100%;
 }
 
 h1 {
     font-family: 'Game of Thrones';
-    justify-content: center;
-    text-align: center;
 }
 
 .got {
