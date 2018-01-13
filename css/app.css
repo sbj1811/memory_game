@@ -55,7 +55,7 @@ h1 {
  */
 
 .deck {
-    width: 660px;
+    width: 60%px;
     min-height: 680px;
     background: #ffffff url('../img/content_background.png');
     padding: 10px;
